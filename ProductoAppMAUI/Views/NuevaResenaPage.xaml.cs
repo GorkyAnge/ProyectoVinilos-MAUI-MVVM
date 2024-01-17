@@ -9,8 +9,8 @@ public partial class NuevaResenaPage : ContentPage
     private Producto _producto;
     private readonly APIService _APIService;
     public NuevaResenaPage(APIService apiservice)
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         _APIService = apiservice;
     }
 

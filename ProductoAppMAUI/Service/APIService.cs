@@ -17,7 +17,7 @@ namespace ProductoAppMAUI.Service
         public HttpClient _httpClient;
         public APIService()
         {
-            _baseUrl = "http://localhost:5240";
+            _baseUrl = "https://apiproductos20240110075942.azurewebsites.net/";
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new Uri(_baseUrl);
         }
@@ -33,7 +33,6 @@ namespace ProductoAppMAUI.Service
 
         public async Task<Producto> GetProducto(int IdProducto)
         {
-            //var response = await _httpClient.GetFromJsonAsync<Producto>($"api/Producto/{Id}");
             var response = await _httpClient.GetAsync($"/api/Producto/{IdProducto}");
             if (response.IsSuccessStatusCode)
             {

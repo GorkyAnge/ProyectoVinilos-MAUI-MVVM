@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:ProductoAppMAUI.ViewModels"
              x:Class="ProductoAppMAUI.CarritoPage"
              BackgroundColor="White"
              Title="CarritoPage">
+
+    <ContentPage.BindingContext>
+        <viewmodel:CarritoViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Recargar" Command="{Binding LoadCarritoCommand}" />
+    </ContentPage.ToolbarItems>
+
     <VerticalStackLayout>
         <Label Text="¡Bienvenido a tu Carrito de Compras!" FontAttributes="Bold" FontSize="25" TextColor="Black" Margin="10"/>
-        <ListView x:Name="ListaCarritos" ItemsSource="{Binding Carrito}" HasUnevenRows="True" ItemSelected="OnClickDetails">
+        <ListView x:Name="ListaCarritos" ItemsSource="{Binding CarritoItems}" HasUnevenRows="True" ItemSelected="OnClickDetails">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -15,9 +25,7 @@
                                 <ColumnDefinition Width="180" />
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
-                                <!-- Columna flexible para el espacio restante -->
                                 <ColumnDefinition Width="Auto" />
-                                <!-- Columna para el botón -->
                             </Grid.ColumnDefinitions>
                             <StackLayout Grid.Column="0" VerticalOptions="CenterAndExpand">
                                 <StackLayout Orientation="Vertical">
@@ -43,14 +51,11 @@
                                             TextColor="Black"/>
                                 </StackLayout>
                             </StackLayout>
-                            <Image Grid.Column="3" VerticalOptions="Center" Source="delete.png" 
-   WidthRequest="75" HeightRequest="40">
+                            <Image Grid.Column="3" VerticalOptions="Center" Source="delete.png" WidthRequest="75" HeightRequest="40">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="TappedDeleteFromCart"/>
                                 </Image.GestureRecognizers>
                             </Image>
-
-                            <!-- Ancho y alto fijo para el botón, alineado a la derecha -->
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
@@ -66,7 +71,7 @@
                 BackgroundColor="{x:StaticResource Primary}"
                 BorderColor="Black"
                 BorderWidth="1"
-                Clicked="OnClickComprar" 
+                Command="{Binding ComprarCommand}"
                 HorizontalOptions="Center" />
     </VerticalStackLayout>
 </ContentPage>

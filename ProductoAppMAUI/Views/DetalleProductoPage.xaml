@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:ProductoAppMAUI.ViewModels"
+             x:Class="ProductoAppMAUI.DetalleProductoPage"
+             BackgroundColor="White"
+             Title="DetalleProductoPage">
+
+    <ContentPage.BindingContext>
+        <viewmodel:DetalleProductoViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout>
+        <Image Source="{Binding Imagen}" HorizontalOptions="Center" HeightRequest="200"/>
+        <Label Text="{Binding Nombre}" TextColor="Black" FontSize="32" HorizontalOptions="Center"/>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Cantidad: " FontSize="18" TextColor="Black"/>
+            <Label Text="{Binding Cantidad}" FontSize="18" TextColor="Black"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Descripción: " FontSize="18" TextColor="Black"/>
+            <Label Text="{Binding Descripcion}" FontSize="18" TextColor="Black"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Button Text="Dejar Reseña" Command="{Binding ResenaCommand}" FontSize="20" Margin="5" HorizontalOptions="FillAndExpand" TextColor="Black" BackgroundColor="#faa65b"/>
+            <Button Text="Ver Reseñas" Command="{Binding ResenaViewCommand}" FontSize="20" Margin="5" HorizontalOptions="FillAndExpand" TextColor="Black" BackgroundColor="#cae42c"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Button Text="Agregar al Carrito" Command="{Binding AddToCartCommand}" FontSize="20" Margin="5" HorizontalOptions="FillAndExpand" TextColor="Black" BackgroundColor="BlueViolet"/>
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>
